@@ -28,18 +28,18 @@ MODLIBS=           $(LOCALMODLIBS) $(BASEMODLIBS)
 
 # === Variables set by configure
 VERSION=	3.8
-srcdir=		/tmp/build/80754af9/python_1573076469108/work
-VPATH=		/tmp/build/80754af9/python_1573076469108/work
-abs_srcdir=	/tmp/build/80754af9/python_1573076469108/work
-abs_builddir=	/tmp/build/80754af9/python_1573076469108/work/build-static
+srcdir=		/croot/python-split_1727968608067/work
+VPATH=		/croot/python-split_1727968608067/work
+abs_srcdir=	/croot/python-split_1727968608067/work
+abs_builddir=	/croot/python-split_1727968608067/work/build-static
 
 
-CC=		x86_64-conda_cos6-linux-gnu-gcc -pthread
-CXX=		x86_64-conda_cos6-linux-gnu-c++ -pthread
+CC=		x86_64-conda-linux-gnu-gcc -pthread
+CXX=		x86_64-conda-linux-gnu-c++ -pthread
 MAINCC=		$(CC)
 LINKCC=		$(PURIFY) $(MAINCC)
-AR=		x86_64-conda_cos6-linux-gnu-ar
-READELF=	x86_64-conda_cos6-linux-gnu-readelf
+AR=		x86_64-conda-linux-gnu-ar
+READELF=	x86_64-conda-linux-gnu-readelf
 SOABI=		cpython-38-x86_64-linux-gnu
 LDVERSION=	$(VERSION)$(ABIFLAGS)
 LIBPYTHON=	
@@ -73,7 +73,7 @@ INSTALL_DATA=	${INSTALL} -m 644
 # rather than figuring out exactly which, we always give them executable mode.
 INSTALL_SHARED= ${INSTALL} -m 755
 
-MKDIR_P=	/bin/mkdir -p
+MKDIR_P=	/usr/bin/mkdir -p
 
 MAKESETUP=      $(srcdir)/Modules/makesetup
 
@@ -81,7 +81,7 @@ MAKESETUP=      $(srcdir)/Modules/makesetup
 OPT=		-DNDEBUG -fwrapv -O2 -Wall
 BASECFLAGS=	 -Wno-unused-result -Wsign-compare
 BASECPPFLAGS=	-IObjects -IInclude -IPython
-CONFIGURE_CFLAGS=	-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe  -fdebug-prefix-map=/tmp/build/80754af9/python_1573076469108/work=/usr/local/src/conda/python-3.8.0 -fdebug-prefix-map=/home/ronit/stu_perform/venv=/usr/local/src/conda-prefix    
+CONFIGURE_CFLAGS=	-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ronit/stu_perform/venv/include -fdebug-prefix-map=/croot/python-split_1727968608067/work=/usr/local/src/conda/python-3.8.20 -fdebug-prefix-map=/home/ronit/stu_perform/venv=/usr/local/src/conda-prefix    
 # CFLAGS_NODIST is used for building the interpreter and stdlib C extensions.
 # Use it when a compiler flag should _not_ be part of the distutils CFLAGS
 # once Python is installed (Issue #21121).
@@ -90,7 +90,7 @@ CONFIGURE_CFLAGS_NODIST=     -g -std=c99 -Wextra -Wno-unused-result -Wno-unused-
 # Use it when a linker flag should _not_ be part of the distutils LDFLAGS
 # once Python is installed (bpo-35257)
 CONFIGURE_LDFLAGS_NODIST=     -g
-CONFIGURE_CPPFLAGS=	-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -I/home/ronit/stu_perform/venv/include -I/home/ronit/stu_perform/venv/include
+CONFIGURE_CPPFLAGS=	-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ronit/stu_perform/venv/include -I/home/ronit/stu_perform/venv/include
 CONFIGURE_LDFLAGS=	-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/home/ronit/stu_perform/venv/lib -Wl,-rpath-link,/home/ronit/stu_perform/venv/lib -L/home/ronit/stu_perform/venv/lib
 # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
 # command line to append to these values without stomping the pre-set
@@ -183,6 +183,9 @@ STRIPFLAG=-s
 # Flags to lipo to produce a 32-bit-only universal executable
 LIPO_32BIT_FLAGS=
 
+# Flags to lipo to produce an intel-64-only universal executable
+LIPO_INTEL64_FLAGS=
+
 # Options to enable prebinding (for fast startup prior to Mac OS X 10.3)
 OTHER_LIBTOOL_OPT=
 
@@ -204,7 +207,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--prefix=/home/ronit/stu_perform/venv' '--build=x86_64-conda_cos6-linux-gnu' '--host=x86_64-conda_cos6-linux-gnu' '--enable-ipv6' '--with-ensurepip=no' '--with-computed-gotos' '--with-system-ffi' '--enable-loadable-sqlite-extensions' '--with-tcltk-includes=-I/home/ronit/stu_perform/venv/include' '--with-tcltk-libs=-L/home/ronit/stu_perform/venv/lib -ltcl8.6 -ltk8.6' '--enable-optimizations' '--with-lto' '-oldincludedir=/tmp/build/80754af9/python_1573076469108/_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/include' '--disable-shared' 'build_alias=x86_64-conda_cos6-linux-gnu' 'host_alias=x86_64-conda_cos6-linux-gnu' 'CC=x86_64-conda_cos6-linux-gnu-gcc' 'CFLAGS=-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe  -fdebug-prefix-map=/tmp/build/80754af9/python_1573076469108/work=/usr/local/src/conda/python-3.8.0 -fdebug-prefix-map=/home/ronit/stu_perform/venv=/usr/local/src/conda-prefix    ' 'LDFLAGS=-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/home/ronit/stu_perform/venv/lib -Wl,-rpath-link,/home/ronit/stu_perform/venv/lib -L/home/ronit/stu_perform/venv/lib' 'CPPFLAGS=-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -I/home/ronit/stu_perform/venv/include -I/home/ronit/stu_perform/venv/include' 'CPP=/tmp/build/80754af9/python_1573076469108/_build_env/bin/x86_64-conda_cos6-linux-gnu-cpp' 'PKG_CONFIG_PATH=/home/ronit/stu_perform/venv/lib/pkgconfig'
+CONFIG_ARGS=	 '--prefix=/home/ronit/stu_perform/venv' '--build=x86_64-conda-linux-gnu' '--host=x86_64-conda-linux-gnu' '--enable-ipv6' '--with-ensurepip=no' '--with-computed-gotos' '--with-system-ffi' '--enable-loadable-sqlite-extensions' '--with-openssl=/home/ronit/stu_perform/venv' '--with-tcltk-includes=-I/home/ronit/stu_perform/venv/include' '--with-tcltk-libs=-L/home/ronit/stu_perform/venv/lib -ltcl8.6 -ltk8.6' '--with-lto' '--enable-optimizations' '-oldincludedir=/croot/python-split_1727968608067/_build_env/x86_64-conda-linux-gnu/sysroot/usr/include' '--disable-shared' 'PROFILE_TASK=-m test --pgo' 'build_alias=x86_64-conda-linux-gnu' 'host_alias=x86_64-conda-linux-gnu' 'MACHDEP=linux' 'CC=x86_64-conda-linux-gnu-gcc' 'CFLAGS=-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ronit/stu_perform/venv/include -fdebug-prefix-map=/croot/python-split_1727968608067/work=/usr/local/src/conda/python-3.8.20 -fdebug-prefix-map=/home/ronit/stu_perform/venv=/usr/local/src/conda-prefix    ' 'LDFLAGS=-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/home/ronit/stu_perform/venv/lib -Wl,-rpath-link,/home/ronit/stu_perform/venv/lib -L/home/ronit/stu_perform/venv/lib' 'CPPFLAGS=-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ronit/stu_perform/venv/include -I/home/ronit/stu_perform/venv/include' 'CPP=/croot/python-split_1727968608067/_build_env/bin/x86_64-conda-linux-gnu-cpp' 'PKG_CONFIG_PATH=/home/ronit/stu_perform/venv/lib/pkgconfig'
 
 
 # Subdirectories with code
@@ -229,7 +232,7 @@ LDLIBRARYDIR=
 INSTSONAME=	$(LDLIBRARY)
 
 
-LIBS=		-lcrypt -lpthread -ldl  -lutil -lrt -lm
+LIBS=		-lcrypt -lpthread -ldl  -lutil -lm
 LIBM=		-lm
 LIBC=		
 SYSLIBS=	$(LIBM) $(LIBC)
@@ -249,8 +252,8 @@ UPDATE_FILE=python3 $(srcdir)/Tools/scripts/update_file.py
 PY_BUILD_ENVIRON=
 PYTHON_FOR_BUILD=./$(BUILDPYTHON) -E
 _PYTHON_HOST_PLATFORM=linux-x86_64
-BUILD_GNU_TYPE=	x86_64-conda_cos6-linux-gnu
-HOST_GNU_TYPE=	x86_64-conda_cos6-linux-gnu
+BUILD_GNU_TYPE=	x86_64-conda-linux-gnu
+HOST_GNU_TYPE=	x86_64-conda-linux-gnu
 
 # Tcl and Tk config info from --with-tcltk-includes and -libs options
 TCLTK_INCLUDES=	-I/home/ronit/stu_perform/venv/include
@@ -738,6 +741,15 @@ regen-importlib: Programs/_freeze_importlib
 	    $(srcdir)/Python/importlib_zipimport.h.new
 	$(UPDATE_FILE) $(srcdir)/Python/importlib_zipimport.h $(srcdir)/Python/importlib_zipimport.h.new
 
+regen-abidump: all
+	@$(MKDIR_P) $(srcdir)/Doc/data/
+	abidw "libpython$(LDVERSION).so" --no-architecture --out-file $(srcdir)/Doc/data/python$(LDVERSION).abi.new
+	@$(UPDATE_FILE) $(srcdir)/Doc/data/python$(LDVERSION).abi $(srcdir)/Doc/data/python$(LDVERSION).abi.new
+
+check-abidump: all
+		abidiff "libpython$(LDVERSION).so" $(srcdir)/Doc/data/python$(LDVERSION).abi --drop-private-types \
+		--suppressions $(srcdir)/Doc/data/python$(LDVERSION).abi.ignorefile \
+		--no-architecture --no-added-syms
 
 ############################################################################
 # Regenerate all generated files
@@ -1271,6 +1283,12 @@ altbininstall: $(BUILDPYTHON)
 			-output $(DESTDIR)$(BINDIR)/python$(VERSION)-32$(EXE) \
 			$(DESTDIR)$(BINDIR)/python$(VERSION)$(EXE); \
 	fi
+	if test "x$(LIPO_INTEL64_FLAGS)" != "x" ; then \
+		rm -f $(DESTDIR)$(BINDIR)python$(VERSION)-intel64$(EXE); \
+		lipo $(LIPO_INTEL64_FLAGS) \
+			-output $(DESTDIR)$(BINDIR)/python$(VERSION)-intel64$(EXE) \
+			$(DESTDIR)$(BINDIR)/python$(VERSION)$(EXE); \
+	fi
 
 bininstall: altbininstall
 	if test ! -d $(DESTDIR)$(LIBPC); then \
@@ -1305,6 +1323,10 @@ bininstall: altbininstall
 	if test "x$(LIPO_32BIT_FLAGS)" != "x" ; then \
 		rm -f $(DESTDIR)$(BINDIR)/python3-32$(EXE); \
 		(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(VERSION)-32$(EXE) python3-32$(EXE)) \
+	fi
+	if test "x$(LIPO_INTEL64_FLAGS)" != "x" ; then \
+		rm -f $(DESTDIR)$(BINDIR)/python3-intel64$(EXE); \
+		(cd $(DESTDIR)$(BINDIR); $(LN) -s python$(VERSION)-intel64$(EXE) python3-intel64$(EXE)) \
 	fi
 
 # Install the versioned manual page
@@ -1733,11 +1755,24 @@ autoconf:
 	# Regenerate pyconfig.h.in from configure.ac using autoheader
 	(cd $(srcdir); autoheader -Wall)
 
+# See https://github.com/tiran/cpython_autoconf container
+.PHONY: regen-configure
+regen-configure:
+	@if command -v podman >/dev/null; then RUNTIME="podman"; else RUNTIME="docker"; fi; \
+	if ! command -v $$RUNTIME; then echo "$@ needs either Podman or Docker container runtime." >&2; exit 1; fi; \
+	if command -v selinuxenabled >/dev/null && selinuxenabled; then OPT=":Z"; fi; \
+	# Manifest corresponds with tag '269' \
+	CPYTHON_AUTOCONF_MANIFEST="sha256:f370fee95eefa3d57b00488bce4911635411fa83e2d293ced8cf8a3674ead939" \
+	CMD="$$RUNTIME run --rm --pull=missing -v $(abs_srcdir):/src$$OPT quay.io/tiran/cpython_autoconf@$$CPYTHON_AUTOCONF_MANIFEST"; \
+	echo $$CMD; \
+	$$CMD || exit $?
+
 # Create a tags file for vi
 tags::
 	ctags -w $(srcdir)/Include/*.h $(srcdir)/Include/cpython/*.h $(srcdir)/Include/internal/*.h
 	for i in $(SRCDIRS); do ctags -f tags -w -a $(srcdir)/$$i/*.[ch]; done
 	ctags -f tags -w -a $(srcdir)/Modules/_ctypes/*.[ch]
+	find $(srcdir)/Lib -type f -name "*.py" -not -name "test_*.py" -not -path "*/test/*" -not -path "*/tests/*" -not -path "*/*_test/*" | ctags -f tags -w -a -L -
 	LC_ALL=C sort -o tags tags
 
 # Create a tags file for GNU Emacs
@@ -1745,6 +1780,8 @@ TAGS::
 	cd $(srcdir); \
 	etags Include/*.h Include/cpython/*.h Include/internal/*.h; \
 	for i in $(SRCDIRS); do etags -a $$i/*.[ch]; done
+	etags -a $(srcdir)/Modules/_ctypes/*.[ch]
+	find $(srcdir)/Lib -type f -name "*.py" -not -name "test_*.py" -not -path "*/test/*" -not -path "*/tests/*" -not -path "*/*_test/*" | etags - -a
 
 # Sanitation targets -- clean leaves libraries, executables and tags
 # files, which clobber removes as well
