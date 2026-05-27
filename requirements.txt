@@ -3,4 +3,6 @@ numpy
 scikit-learn
 dill
 seaborn
+flask
+pickle
 -e .
